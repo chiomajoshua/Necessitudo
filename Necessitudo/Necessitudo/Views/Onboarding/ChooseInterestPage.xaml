@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Necessitudo.Views.Onboarding.ChooseInterestPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F5F6FA">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MenuFrame" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="WidthRequest" Value="250"/>
+                <Setter Property="HeightRequest" Value="200"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="VerticalOptions" Value="StartAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="2.5*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Horizontal">
+                <Image VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Source="backButton.png" HeightRequest="15" WidthRequest="20"/>
+                <Image VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" Source="nextButton.png" HeightRequest="40" WidthRequest="40"/>
+            </StackLayout>
+
+
+            <StackLayout Margin="0,20,0,0" Grid.Row="1" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <Label HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="#0E2F50" FontFamily="{StaticResource gothamProBold}" FontSize="25">
+                    <Label.Text>
+                        What are you looking for
+                    </Label.Text>
+                </Label>
+                <Label Margin="0,15,0,0" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="#344248" FontFamily="{StaticResource gothamProLight}" FontSize="13">
+                    <Label.Text>
+                        Let us match you with the perfect you
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+
+
+            <StackLayout VerticalOptions="CenterAndExpand" Spacing="30" Grid.Row="2">
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                    <Frame Style="{StaticResource MenuFrame}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2.5*"/>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="Relationship.png" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center"/>
+                            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1" Text="Relationship" FontFamily="{StaticResource gothamProBold}" FontSize="14" TextColor="#0E2F50" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+                    <Frame Style="{StaticResource MenuFrame}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2.5*"/>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="marriageTime.png" Grid.Row="0" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center"/>
+                            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1" Text="Marriage" FontFamily="{StaticResource gothamProBold}" FontSize="14" TextColor="#0E2F50" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Spacing="10">
+                    <Frame Style="{StaticResource MenuFrame}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2.5*"/>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="datenight.png" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center"/>
+                            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1" Text="Date Night" FontFamily="{StaticResource gothamProBold}" FontSize="14" TextColor="#0E2F50" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+                    <Frame Style="{StaticResource MenuFrame}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2.5*"/>
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Image Source="chats.png" WidthRequest="200" HeightRequest="200" HorizontalOptions="Center"/>
+                            <Label HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Grid.Row="1" Text="Chat" FontFamily="{StaticResource gothamProBold}" FontSize="14" TextColor="#0E2F50" HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+
+                <!--<StackLayout Margin="0,30,0,0" VerticalOptions="EndAndExpand">
+                    <Frame WidthRequest="450" HeightRequest="20" Opacity="75" Margin="10,10,10,10" HorizontalOptions="FillAndExpand" BackgroundColor="#0E2F50" Padding="20">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding VerifyPhonePageCommand}" />
+                        </Frame.GestureRecognizers>
+                        <Label Text="Next" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
+                    </Frame>
+                </StackLayout>-->
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

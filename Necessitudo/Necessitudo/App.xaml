@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Necessitudo.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#F5F6FA</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="#012B5B" />
+            </Style>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="gothamProBlack">
+                <On Platform="Android" Value="GothaProBla.otf#GothaProBla" />
+                <On Platform="iOS" Value="GothaProBla" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="gothamProBold">
+                <On Platform="Android" Value="GothaProBol.otf#GothaProBol" />
+                <On Platform="iOS" Value="GothaProBol" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="gothamProLight">
+                <On Platform="Android" Value="GothaProLig.otf#GothaProLig" />
+                <On Platform="iOS" Value="GothaProLig" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="gothamProMedium">
+                <On Platform="Android" Value="GothaProMed.otf#GothaProMed" />
+                <On Platform="iOS" Value="GothaProMed" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="gothamProRegular">
+                <On Platform="Android" Value="GothaProReg.otf#GothaProReg" />
+                <On Platform="iOS" Value="GothaProReg" />
+            </OnPlatform>
+
+
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</Application>

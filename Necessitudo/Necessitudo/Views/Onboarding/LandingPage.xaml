@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:Necessitudo.ViewModels.Onbaording"
+             xmlns:slide="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             mc:Ignorable="d"
+             x:Class="Necessitudo.Views.Onboarding.LandingPage"
+             x:Name="LandPage">
+
+    <ContentPage.BindingContext>
+        <vm:LandingPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <slide:CarouselViewControl ShowIndicators="true" IndicatorsShape="Square" IndicatorsTintColor="WhiteSmoke" CurrentPageIndicatorTintColor="#F94646" Grid.Row="0" Orientation="Horizontal" InterPageSpacing="0"  ItemsSource="{Binding Items}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <slide:CarouselViewControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid >
+                        <RelativeLayout>
+                            <Image RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" Aspect="AspectFill" Opacity="30" BackgroundColor="Black" Source="{Binding ImagePath}" />
+                        </RelativeLayout>
+                        <StackLayout Padding="20" Orientation="Vertical" HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand">
+
+                            <Label VerticalOptions="EndAndExpand" TextColor="#FFFFFF" FontSize="Medium" HorizontalTextAlignment="Center" Padding="25" FontFamily="{StaticResource gothamProLight}" Text="{Binding Description}"/>
+
+                            <Frame WidthRequest="450" HeightRequest="20" Opacity="85" Margin="10,10,10,10" HorizontalOptions="CenterAndExpand" BackgroundColor="#F94646" Padding="20">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Name=LandPage}, Path=BindingContext.RegistrationPageCommand}" CommandParameter="{Binding .}"/>
+
+                                </Frame.GestureRecognizers>
+                                <Label Text="How This Works" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand">
+                                </Label>
+                            </Frame>
+
+                            <Frame WidthRequest="450" HeightRequest="20" Opacity="75" Margin="10,10,10,10" BorderColor="#FFFFFF" HorizontalOptions="CenterAndExpand" BackgroundColor="Transparent" Padding="20">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference Name=LandPage}, Path=BindingContext.LoginPageCommand}" CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <Label Text="Login with Phone Number" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </slide:CarouselViewControl.ItemTemplate>
+        </slide:CarouselViewControl>
+    </ContentPage.Content>
+</ContentPage>

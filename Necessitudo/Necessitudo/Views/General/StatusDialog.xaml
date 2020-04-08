@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rg:PopupPage xmlns:rg="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Necessitudo.Views.General.StatusDialog">
+    <Grid HeightRequest="265" VerticalOptions="End">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Frame Grid.RowSpan="2" HeightRequest="180" VerticalOptions="End" CornerRadius="20" Padding="20,0" BackgroundColor="White">
+            <StackLayout Orientation="Vertical" Spacing="10" VerticalOptions="Center" HorizontalOptions="Center">
+                <Label x:Name="title" HorizontalOptions="CenterAndExpand" Text="{Binding Title}" FontSize="20" FontFamily="{StaticResource gothamProBold}" TextColor="#000000" HorizontalTextAlignment="Center"/>
+                <Label x:Name="description" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" FontFamily="{StaticResource gothamProRegular}" TextColor="#9B9A9A" Text="{Binding Description}" />
+            </StackLayout>
+
+        </Frame>
+        <StackLayout Grid.Row="1" Spacing="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+            <Button x:Name="okButton" HorizontalOptions="FillAndExpand" HeightRequest="45" BackgroundColor="#F94646" Text="OK" TextColor="White" FontFamily="{StaticResource gothamProBold}" FontSize="Medium" />
+            <Button x:Name="cancelButton" HeightRequest="45" HorizontalOptions="FillAndExpand" BackgroundColor="#9B9A9A" Text="CANCEL" TextColor="White" FontFamily="{StaticResource gothamProBold}" FontSize="Medium" />
+        </StackLayout>
+    </Grid>
+</rg:PopupPage>

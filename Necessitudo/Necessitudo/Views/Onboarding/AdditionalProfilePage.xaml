@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Necessitudo.CustomRenderer"
+             xmlns:vm="clr-namespace:Necessitudo.ViewModels.Onbaording"
+             mc:Ignorable="d"
+             x:Class="Necessitudo.Views.Onboarding.AdditionalProfilePage"
+            NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#F5F6FA">
+
+    <ContentPage.BindingContext>
+        <vm:RegistrationPageViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackLayout Orientation="Horizontal">
+                <Image VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Source="backButton.png" HeightRequest="15" WidthRequest="20">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackToRegistrationPageCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+
+
+            <StackLayout Margin="0,20,0,0" Grid.Row="1" VerticalOptions="Fill" HorizontalOptions="Fill">
+                <Label Visual="Material" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="#0E2F50" FontFamily="{StaticResource gothamProBold}" FontSize="25">
+                    <Label.Text>
+                        Additional Information
+                    </Label.Text>
+                </Label>
+                <Label Visual="Material" Margin="0,15,0,0" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="#344248" FontFamily="{StaticResource gothamProLight}" FontSize="13">
+                    <Label.Text>
+                        Let us make your profile creative
+                    </Label.Text>
+                </Label>
+            </StackLayout>
+
+
+            <StackLayout VerticalOptions="StartAndExpand" Margin="0,15,0,0" Spacing="15" Grid.Row="2">
+
+                <StackLayout Orientation="Vertical">
+                    <local:CustomPicker TitleColor="#9B9A9A" Title="Profession" TextColor="#000000" Grid.Row="1" SelectedItem="{Binding Profession}" Grid.ColumnSpan="2" FontSize="13" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+                        <Picker.Items>
+                            <x:String>Oil and Gas</x:String>
+                            <x:String>Health Services</x:String>
+                            <x:String>Financial Services</x:String>
+                            <x:String>Legal Services</x:String>
+                            <x:String>Information Technology</x:String>
+                        </Picker.Items>
+                    </local:CustomPicker>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical">
+                    <local:CustomEditor Placeholder="I enjoy" PlaceholderColor="#9B9A9A" HeightRequest="200" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding FullName}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                </StackLayout>
+
+                <StackLayout Margin="0,60,0,0" VerticalOptions="EndAndExpand">
+                    <Frame Visual="Material" WidthRequest="450" HeightRequest="20" Opacity="75" Margin="10,10,10,10" HorizontalOptions="FillAndExpand" BackgroundColor="#F94646" Padding="20">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LookingForPageCommand}" />
+                        </Frame.GestureRecognizers>
+                        <Label Text="Next" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

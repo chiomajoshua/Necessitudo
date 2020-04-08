@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Necessitudo.CustomRenderer"
+             mc:Ignorable="d"
+             x:Class="Necessitudo.Views.Explore.EditProfilePage"
+            NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True"
+             Title="Edit Profile">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="30">
+
+                <StackLayout VerticalOptions="CenterAndExpand" Spacing="20">
+
+                    <StackLayout Orientation="Vertical">
+                        <local:CustomEditor Placeholder="About me" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding FullName}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical">
+                        <local:CustomEntry Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Email}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Email"  Placeholder="Email" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
+                    </StackLayout>
+
+                    <StackLayout Spacing="-10" Orientation="Vertical">
+                        <Label FontSize="13" Text="Date Of Birth"/>
+                        <DatePicker Visual="Material" TextColor="#000000" MinimumDate="{Binding MinDob}" Date="{Binding DateOfBirth}" FontSize="13" MaximumDate="{Binding MaxDob}" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" />
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical">
+                        <local:CustomPicker TitleColor="#9B9A9A" Title="Industry" TextColor="#000000" Grid.Row="1" SelectedItem="{Binding Profession}" Grid.ColumnSpan="2" FontSize="13" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+                            <Picker.Items>
+                                <x:String>Oil and Gas</x:String>
+                                <x:String>Health Services</x:String>
+                                <x:String>Financial Services</x:String>
+                                <x:String>Legal Services</x:String>
+                                <x:String>Information Technology</x:String>
+                            </Picker.Items>
+                        </local:CustomPicker>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Vertical">
+                        <local:CustomEditor Placeholder="I enjoy" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding FullName}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                    </StackLayout>
+
+
+                    <StackLayout Margin="0,30,0,0" VerticalOptions="EndAndExpand">
+                        <Frame Visual="Material" WidthRequest="450" HeightRequest="20" Opacity="75" Margin="10,10,10,10" HorizontalOptions="FillAndExpand" BackgroundColor="#F94646" Padding="20">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ProcessRegistrationCommand}" />
+                            </Frame.GestureRecognizers>
+                            <Label Text="Save" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

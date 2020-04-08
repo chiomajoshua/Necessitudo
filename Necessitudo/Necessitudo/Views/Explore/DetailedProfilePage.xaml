@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ctrl="clr-namespace:Necessitudo.Controls"
+             xmlns:vm="clr-namespace:Necessitudo.ViewModels.Explore"
+             mc:Ignorable="d"
+             x:Class="Necessitudo.Views.Explore.DetailedProfilePage"
+              NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True"
+             Icon="profileIcon">
+    <ContentPage.BindingContext>
+        <vm:ProfilePageViewModel x:Name="profilePageVM"/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <FlexLayout>
+            <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.5*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+
+                    <StackLayout VerticalOptions="FillAndExpand"  HorizontalOptions="FillAndExpand" HeightRequest="300">
+                        <CarouselView x:Name="pictureSlider" ItemsSource="{Binding Items}" HorizontalScrollBarVisibility="Never">
+                            <CarouselView.ItemsLayout>
+                                <LinearItemsLayout Orientation="Horizontal"
+                                               ItemSpacing="0"/>
+                            </CarouselView.ItemsLayout>
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Spacing="8">
+                                        <RelativeLayout>
+                                            <Image RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width}"
+        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,Property=Height}" Aspect="AspectFill" BackgroundColor="Black" Source="{Binding ImagePath}" />
+                                        </RelativeLayout>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                        <ctrl:SlideIndicator ActiveColor="#B40156" HorizontalOptions="CenterAndExpand" Margin="0,-8,0,0" />
+                    </StackLayout>
+
+                    <StackLayout BackgroundColor="White" Spacing="20" Padding="30" Grid.Row="1" Orientation="Vertical">
+                        <Frame HasShadow="True" CornerRadius="10" Margin="20,-90,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Margin="10,0,0,0" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                    <Label Text="{Binding FullName}" TextColor="Black" FontSize="18" FontFamily="{StaticResource gothamProBold}" HorizontalOptions="Start"/>
+                                    <Label Text="Edit Profile" TextColor="#7D7D7D" FontSize="15" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="StartAndExpand">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding EditProfilePageCommand}" />
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+
+                        <StackLayout>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="About" TextColor="#7D7D7D" FontSize="11" FontFamily="{StaticResource gothamProLight}" HorizontalOptions="StartAndExpand"/>
+                                <Label Grid.Row="1" Text="{Binding About}" LineBreakMode="WordWrap" TextColor="Black" FontFamily="{StaticResource gothamProRegular}" FontSize="13"/>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="Date of Birth" TextColor="#7D7D7D" FontSize="11" FontFamily="{StaticResource gothamProLight}" HorizontalOptions="StartAndExpand"/>
+                                <Label Grid.Row="1" Text="{Binding DateOfBirth}" LineBreakMode="WordWrap" TextColor="Black" FontFamily="{StaticResource gothamProRegular}" FontSize="13"/>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="Profession" TextColor="#7D7D7D" FontSize="11" FontFamily="{StaticResource gothamProLight}" HorizontalOptions="StartAndExpand"/>
+                                <Label Grid.Row="1" Text="{Binding Profession}" LineBreakMode="WordWrap" TextColor="Black" FontFamily="{StaticResource gothamProRegular}" FontSize="13"/>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="I enjoy" TextColor="#7D7D7D" FontSize="11" FontFamily="{StaticResource gothamProLight}" HorizontalOptions="StartAndExpand"/>
+                                <Label Grid.Row="1" Text="{Binding IEnjoy}" LineBreakMode="WordWrap" TextColor="Black" FontFamily="{StaticResource gothamProRegular}" FontSize="13"/>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand" Spacing="4" Orientation="Horizontal">
+                            <Image x:Name="starOne" HeightRequest="30" WidthRequest="30"/>
+                            <Image x:Name="starTwo" HeightRequest="30" WidthRequest="30"/>
+                            <Image x:Name="starThree" HeightRequest="30" WidthRequest="30"/>
+                            <Image x:Name="starFour" HeightRequest="30" WidthRequest="30" />
+                            <Image x:Name="starFive" HeightRequest="30" WidthRequest="30"/>
+                        </StackLayout>
+                        <StackLayout>
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="Social Media Connections" TextColor="#7D7D7D" FontSize="11" FontFamily="{StaticResource gothamProLight}" HorizontalOptions="StartAndExpand"/>
+                                <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="4">
+                                    <Image x:Name="linkedin" HeightRequest="30" WidthRequest="30"/>
+                                    <Image x:Name="instagram" HeightRequest="30" WidthRequest="30"/>
+                                    <Image x:Name="facebook" HeightRequest="30" WidthRequest="30" />
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Frame Visual="Material" WidthRequest="450" HeightRequest="20" Opacity="75" Margin="10,10,10,10" HorizontalOptions="FillAndExpand" BackgroundColor="#F94646" Padding="20">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+                                </Frame.GestureRecognizers>
+                                <Label Text="Logout" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
+                            </Frame>
+                        </StackLayout>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </FlexLayout>
+    </ContentPage.Content>
+</ContentPage>
