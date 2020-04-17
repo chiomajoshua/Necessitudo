@@ -33,8 +33,8 @@ namespace Necessitudo.ViewModels.Onbaording
             {
                 AppInstance.Essentials.UserProfile.Password = OTP;
                 await AppInstance.Essentials.SaveUserProfileAsync();
-                UserDialogs.Instance.ShowLoading("Creating Profile..Please Wait...");
-                await Task.Delay(3000);                
+                UserDialogs.Instance.ShowLoading("Creating Profile.. Please Wait...");
+                await Task.Delay(5000);                
                 var result = await AppInstance.Essentials.RegisterNewUser();
                 UserDialogs.Instance.HideLoading();
                 if (result.IsSuccessfull)

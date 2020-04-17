@@ -10,7 +10,7 @@ namespace Necessitudo.Models.RequestModel
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string Gender { get; set; }
-        public string DateofBirth { get; set; }
+        public DateTime DateofBirth { get; set; }
         public string Profession { get; set; }
         public string Hobbies { get; set; }
         public string AgeRange { get; set; }

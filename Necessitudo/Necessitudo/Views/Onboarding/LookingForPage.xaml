@@ -46,11 +46,7 @@
             </StackLayout>
 
 
-            <StackLayout VerticalOptions="StartAndExpand" Spacing="15" Grid.Row="2">
-
-                <StackLayout Orientation="Vertical">
-                    <local:CustomPicker Grid.Column="1" x:Name="borderlessPicker1" TitleColor="#9B9A9A" Grid.ColumnSpan="2" ItemDisplayBinding="{Binding Value}" SelectedItem="{Binding AppInstance.Essentials.UserProfile.Profession}" props:ControlProperties.PickerSelectedItem="{Binding AppInstance.Essentials.UserProfile.AgeRange}" ItemsSource="{Binding ListAges}" Title="Age Range" FontSize="13" />
-                </StackLayout>
+            <StackLayout VerticalOptions="StartAndExpand" Spacing="15" Grid.Row="2">                
 
                 <StackLayout Orientation="Vertical">
                     <local:CustomEditor Placeholder="Deal makers" PlaceholderColor="#9B9A9A" HeightRequest="100" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.DealMakers}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="13"/>
@@ -58,6 +54,17 @@
 
                 <StackLayout Orientation="Vertical">
                     <local:CustomEditor Placeholder="Deal breakers" PlaceholderColor="#9B9A9A" HeightRequest="100" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.DealBreakers}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="13"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical">
+                    <local:CustomPicker Grid.Column="1" x:Name="borderlessPicker1" TitleColor="#9B9A9A" Grid.ColumnSpan="2" SelectedItem="{Binding AppInstance.Essentials.UserProfile.AgeRange}" props:ControlProperties.PickerSelectedItem="{Binding AppInstance.Essentials.UserProfile.AgeRange}" Title="Age Range" FontSize="13" >
+                        <Picker.Items>
+                            <x:String>20-30</x:String>
+                            <x:String>31-40</x:String>
+                            <x:String>41-50</x:String>
+                            <x:String>51-60</x:String>
+                        </Picker.Items>
+                    </local:CustomPicker>
                 </StackLayout>
 
 

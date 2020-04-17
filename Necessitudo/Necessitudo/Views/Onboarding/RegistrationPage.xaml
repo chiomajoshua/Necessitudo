@@ -73,7 +73,7 @@
 
                     <StackLayout Spacing="-10" Orientation="Vertical">
                         <Label FontSize="13" Text="Date Of Birth"/>
-                        <DatePicker Visual="Material" TextColor="#000000" MinimumDate="{Binding MinDob}" Date="{Binding AppInstance.Essentials.UserProfile.DateofBirthSelected}" FontSize="13" MaximumDate="{Binding MaxDob}" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" />
+                        <DatePicker Visual="Material" TextColor="#000000" MinimumDate="{Binding MinDob}" Date="{Binding AppInstance.Essentials.UserProfile.DateofBirth}" FontSize="13" MaximumDate="{Binding MaxDob}" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" />
                     </StackLayout>
                     
 

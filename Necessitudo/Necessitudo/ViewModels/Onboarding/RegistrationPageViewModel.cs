@@ -201,11 +201,10 @@ namespace Necessitudo.ViewModels.Onbaording
         private async Task<bool> ValidateFields()
         {
             var userProfile = AppInstance.Essentials.UserProfile;
-            if(!(!string.IsNullOrEmpty(userProfile.LastName) && !string.IsNullOrEmpty(userProfile.FirstName) && !string.IsNullOrEmpty(userProfile.Email) && !string.IsNullOrEmpty(userProfile.Gender) && !string.IsNullOrEmpty(userProfile.PhoneNumber) && !string.IsNullOrEmpty(userProfile.PhoneNumber)))
+            if(!(!string.IsNullOrEmpty(userProfile.LastName) && !string.IsNullOrEmpty(userProfile.FirstName) && !string.IsNullOrEmpty(userProfile.Email) && !string.IsNullOrEmpty(userProfile.Gender) && !string.IsNullOrEmpty(userProfile.PhoneNumber)))
             {
                 return false;
             }
-            userProfile.DateofBirth = userProfile.DateofBirthSelected.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture).Replace("/", "-");
             return true;
         }
 

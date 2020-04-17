@@ -107,10 +107,9 @@ namespace Necessitudo.Helpers
             try
             {
                 var result = await vm.RegisterAccount(MapRegisterModel(UserProfile));
-                if (Utility.HandleResponseCode(result.ResponseCode.ToString(), out string message))
+                if (result.ResponseObject == true)
                 {
                     return new ApiCallResult<bool> { IsSuccessfull = true, Result = result.ResponseObject };
-
                 }                
                 else
                 {

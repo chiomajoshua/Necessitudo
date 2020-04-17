@@ -98,7 +98,7 @@ namespace Necessitudo.Engine.Constants
                 if(req != null)
                 {
                     request.Content = new StringContent(jsonString, Encoding.UTF8);
-                    request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                    //request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 }
 
                 try
@@ -152,7 +152,7 @@ namespace Necessitudo.Engine.Constants
         /// <param name="headers"></param>
         /// <param name="req"></param>
         /// <returns></returns>
-        public async Task<string> PostwithBody(string url, Dictionary<string, string> headers = null, object req = null)
+        public async Task<string> PostWithBody(string url, Dictionary<string, string> headers = null, object req = null)
         {
             var jsonString = string.Empty;
             var responseBody = string.Empty;

@@ -12,8 +12,7 @@ namespace Necessitudo.Models
         public string Password { get; set; }
         public string UserName { get; set; }
         public string Gender { get; set; }
-        public DateTime DateofBirthSelected { get; set; }
-        public string DateofBirth { get; set; }
+        public DateTime DateofBirth { get; set; }
         public string Profession { get; set; }
         public string Hobbies { get; set; }
         public string AgeRange { get; set; }

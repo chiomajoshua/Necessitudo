@@ -16,7 +16,7 @@ namespace Necessitudo.Engine
         {
             try
             {                               
-               return JsonConvert.DeserializeObject<ApiResponse<string>>(await httpClientUtil.PostwithBody(Endpoints.GENERATE_TOKEN, null, selectUserViewModel));
+               return JsonConvert.DeserializeObject<ApiResponse<string>>(await httpClientUtil.PostWithBody(Endpoints.GENERATE_TOKEN, null, selectUserViewModel));
             }
             catch (FlurlHttpException exception)
             {
@@ -29,7 +29,7 @@ namespace Necessitudo.Engine
         {
             try
             {
-                return JsonConvert.DeserializeObject<ApiResponse<string>>(await httpClientUtil.PostwithBody(url: Endpoints.LOGIN_ENDPOINT, null, req: loginViewModel));
+                return JsonConvert.DeserializeObject<ApiResponse<string>>(await httpClientUtil.PostWithBody(url: Endpoints.LOGIN_ENDPOINT, null, req: loginViewModel));
             }
             catch (FlurlHttpException exception)
             {
@@ -46,7 +46,7 @@ namespace Necessitudo.Engine
                 _header.Clear();
                 _header.Add("Authorization", "Bearer" + " " + token);
                 #endregion
-                return JsonConvert.DeserializeObject<ApiResponse<bool>>(await httpClientUtil.PostwithBody(url: Endpoints.LOGOUT_ENDPOINT, headers: _header, null));
+                return JsonConvert.DeserializeObject<ApiResponse<bool>>(await httpClientUtil.PostWithBody(url: Endpoints.LOGOUT_ENDPOINT, headers: _header, null));
             }
             catch (FlurlHttpException exception)
             {
@@ -59,7 +59,7 @@ namespace Necessitudo.Engine
         {
             try
             {
-                return JsonConvert.DeserializeObject<ApiResponse<bool>>(await httpClientUtil.PostwithBody(url: Endpoints.REGISTER_ACCOUNT, null, req: registerViewModel));
+                return JsonConvert.DeserializeObject<ApiResponse<bool>>(await httpClientUtil.PostWithBody(url: Endpoints.REGISTER_ACCOUNT, null, req: registerViewModel));
             }
             catch (FlurlHttpException exception)
             {
@@ -72,7 +72,7 @@ namespace Necessitudo.Engine
         {
             try
             {
-                return JsonConvert.DeserializeObject<ApiResponse<bool>>(await httpClientUtil.GetWithBody(url: Endpoints.VALIDATE_EMAIL, null, req: selectUserViewModel));
+                return JsonConvert.DeserializeObject<ApiResponse<bool>>(await httpClientUtil.PostWithBody(url: Endpoints.VALIDATE_EMAIL, null, req: selectUserViewModel));
             }
             catch (FlurlHttpException exception)
             {

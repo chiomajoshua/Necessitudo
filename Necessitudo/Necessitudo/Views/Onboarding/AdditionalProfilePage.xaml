@@ -49,6 +49,14 @@
             <StackLayout VerticalOptions="StartAndExpand" Margin="0,15,0,0" Spacing="15" Grid.Row="2">
 
                 <StackLayout Orientation="Vertical">
+                    <local:CustomEditor Placeholder="About me" PlaceholderColor="#9B9A9A" HeightRequest="100" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.AboutMe}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Vertical">
+                    <local:CustomEditor Placeholder="I enjoy" PlaceholderColor="#9B9A9A" HeightRequest="100" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.Hobbies}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Vertical">
                     <local:CustomPicker TitleColor="#9B9A9A" Title="Profession" TextColor="#000000" Grid.Row="1" SelectedItem="{Binding AppInstance.Essentials.UserProfile.Profession}" props:ControlProperties.PickerSelectedItem="{Binding AppInstance.Essentials.UserProfile.Profession}" Grid.ColumnSpan="2" FontSize="13" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <Picker.Items>
                             <x:String>Oil and Gas</x:String>
@@ -58,11 +66,7 @@
                             <x:String>Information Technology</x:String>
                         </Picker.Items>
                     </local:CustomPicker>
-                </StackLayout>
-
-                <StackLayout Orientation="Vertical">
-                    <local:CustomEditor Placeholder="I enjoy" PlaceholderColor="#9B9A9A" HeightRequest="200" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.Hobbies}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
-                </StackLayout>
+                </StackLayout>                
 
                 <StackLayout Margin="0,60,0,0" VerticalOptions="EndAndExpand">
                     <Frame Visual="Material" WidthRequest="450" HeightRequest="20" Opacity="75" Margin="10,10,10,10" HorizontalOptions="FillAndExpand" BackgroundColor="#F94646" Padding="20">
