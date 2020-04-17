@@ -39,7 +39,7 @@
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={x:Reference Name=LandPage}, Path=BindingContext.LoginPageCommand}" CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>
-                                <Label Text="Login with Phone Number" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
+                                <Label Text="Login with Email" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
                             </Frame>
                         </StackLayout>
                     </Grid>

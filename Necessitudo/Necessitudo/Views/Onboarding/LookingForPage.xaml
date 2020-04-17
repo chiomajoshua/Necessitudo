@@ -5,10 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Necessitudo.CustomRenderer"
              xmlns:vm="clr-namespace:Necessitudo.ViewModels.Onbaording"
-              xmlns:props="clr-namespace:Necessitudo.AttachedProperties"
+             xmlns:props="clr-namespace:Necessitudo.AttachedProperties"
              mc:Ignorable="d"
              x:Class="Necessitudo.Views.Onboarding.LookingForPage"
-              NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasNavigationBar="False"
              BackgroundColor="#F5F6FA">
 
     <ContentPage.BindingContext>
@@ -26,7 +26,7 @@
             <StackLayout Orientation="Horizontal">
                 <Image VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Source="backButton.png" HeightRequest="15" WidthRequest="20">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BackToRegistrationPageCommand}" />
+                        <TapGestureRecognizer Tapped="Back_Clicked" />
                     </Image.GestureRecognizers>
                 </Image>
             </StackLayout>
@@ -49,15 +49,15 @@
             <StackLayout VerticalOptions="StartAndExpand" Spacing="15" Grid.Row="2">
 
                 <StackLayout Orientation="Vertical">
-                    <local:CustomPicker Grid.Column="1" Grid.ColumnSpan="2" ItemDisplayBinding="{Binding Value}" SelectedItem="{Binding SelectedAge}" props:ControlProperties.PickerSelectedItem="{Binding SelectedAge}" ItemsSource="{Binding ListAges}" Title="Age Range" FontSize="20" BackgroundColor="Transparent" />
+                    <local:CustomPicker Grid.Column="1" x:Name="borderlessPicker1" TitleColor="#9B9A9A" Grid.ColumnSpan="2" ItemDisplayBinding="{Binding Value}" SelectedItem="{Binding AppInstance.Essentials.UserProfile.Profession}" props:ControlProperties.PickerSelectedItem="{Binding AppInstance.Essentials.UserProfile.AgeRange}" ItemsSource="{Binding ListAges}" Title="Age Range" FontSize="13" />
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
-                    <local:CustomEditor Placeholder="Deal makers" PlaceholderColor="#9B9A9A" HeightRequest="100" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding FullName}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                    <local:CustomEditor Placeholder="Deal makers" PlaceholderColor="#9B9A9A" HeightRequest="100" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.DealMakers}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="13"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
-                    <local:CustomEditor Placeholder="Deal breakers" PlaceholderColor="#9B9A9A" HeightRequest="100" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding FullName}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                    <local:CustomEditor Placeholder="Deal breakers" PlaceholderColor="#9B9A9A" HeightRequest="100" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.DealBreakers}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="13"/>
                 </StackLayout>
 
 

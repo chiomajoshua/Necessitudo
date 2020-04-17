@@ -1,7 +1,10 @@
 ﻿using Necessitudo.Models;
 using Necessitudo.Views.Explore;
+using Necessitudo.Views.General;
+using Necessitudo.Views.Onboarding;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -123,6 +126,18 @@ namespace Necessitudo.ViewModels.Explore
             InstagramLink = false;
             FacebookLink = false;
             LinkedInLink = true;
+        }
+
+        public ICommand LogoutCommand => new Command(LogoutProcedure);
+
+        public async void LogoutProcedure()
+        {
+            StatusDialog.Show(StatusDialogType.Success, "Dating App", "You are about to logoff. Please confirm.", "Yes", async () =>
+            {
+                AppInstance.MainPage.Navigation.InsertPageBefore(new LoginPageView(), AppInstance.MainPage.Navigation.NavigationStack.First());
+                await AppInstance.MainPage.Navigation.PopToRootAsync();
+            },
+             "No", null);
         }
     }
 }

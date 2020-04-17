@@ -1,18 +1,15 @@
-﻿using System;
+﻿using Necessitudo.Views.General;
+using Necessitudo.Views.Onboarding;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
-
-using Xamarin.Forms;
-
-using Necessitudo.Models;
-using Necessitudo.Services;
-using System.Threading.Tasks;
-using System.Windows.Input;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Net.Mail;
-using Necessitudo.Views.General;
-using Necessitudo.Views.Onboarding;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Necessitudo.ViewModels
 {
@@ -26,16 +23,7 @@ namespace Necessitudo.ViewModels
         private readonly Dictionary<string, object> _values = new Dictionary<string, object>();
         #endregion
 
-        public ICommand LogoutCommand => new Command(LogoutProcedure);
-
-        public async void LogoutProcedure()
-        {
-            StatusDialog.Show(StatusDialogType.Success, "Dating App", "You are about to logoff. Please confirm.", "Yes", async () =>
-            {
-                await PushPageAsync(new LoginPageView());
-            },
-                "No", null);
-        }
+        
 
         public bool IsValidEmail(string emailaddress)
         {
@@ -98,6 +86,7 @@ namespace Necessitudo.ViewModels
             }
             return (T)value;
         }
+        
 
 
         public BaseViewModel MainVM

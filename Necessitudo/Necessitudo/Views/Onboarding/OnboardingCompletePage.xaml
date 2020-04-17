@@ -6,7 +6,8 @@
              xmlns:vm="clr-namespace:Necessitudo.ViewModels.Onbaording"
              mc:Ignorable="d"
              x:Class="Necessitudo.Views.Onboarding.OnboardingCompletePage"
-              NavigationPage.HasNavigationBar="False">
+              NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
 
 
     <ContentPage.BindingContext>
@@ -25,18 +26,13 @@
 
             </StackLayout>
 
-
             <StackLayout Spacing="10" Grid.Row="1">
                 <Label Margin="0,15,0,0" HorizontalOptions="StartAndExpand" HorizontalTextAlignment="Start" TextColor="#000000" FontFamily="{StaticResource gothamProBold}" FontSize="30">
                     <Label.Text>
-                        Congratulations!!
+                        You Did It!!
                     </Label.Text>
                 </Label>
-                <Label TextColor="#9B9A9A" FontFamily="{StaticResource gothamProRegular}" FontSize="13">
-                    <Label.Text>
-                        Hi, [User]. Kudos to you for completing your registration.You can start meeting people now....
-                    </Label.Text>
-                </Label>
+                <Label Text="{Binding ConfirmationText}" TextColor="#9B9A9A" FontFamily="{StaticResource gothamProRegular}" FontSize="13"/>
 
                 <Frame WidthRequest="450" HeightRequest="20" Opacity="75" Margin="10,10,10,10" HorizontalOptions="FillAndExpand" BackgroundColor="#F94646" Padding="20">
                     <Frame.GestureRecognizers>
@@ -45,8 +41,6 @@
                     <Label Text="Start Your Search" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
                 </Frame>
             </StackLayout>
-
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

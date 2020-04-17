@@ -6,8 +6,9 @@
              xmlns:local="clr-namespace:Necessitudo.CustomRenderer"
              xmlns:vm="clr-namespace:Necessitudo.ViewModels.Onbaording"
              mc:Ignorable="d"
+             xmlns:props="clr-namespace:Necessitudo.AttachedProperties"
              x:Class="Necessitudo.Views.Onboarding.AdditionalProfilePage"
-            NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasNavigationBar="False"
              BackgroundColor="#F5F6FA">
 
     <ContentPage.BindingContext>
@@ -25,7 +26,7 @@
             <StackLayout Orientation="Horizontal">
                 <Image VerticalOptions="CenterAndExpand" HorizontalOptions="StartAndExpand" Source="backButton.png" HeightRequest="15" WidthRequest="20">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding BackToRegistrationPageCommand}" />
+                        <TapGestureRecognizer Tapped="Back_Clicked" />
                     </Image.GestureRecognizers>
                 </Image>
             </StackLayout>
@@ -48,7 +49,7 @@
             <StackLayout VerticalOptions="StartAndExpand" Margin="0,15,0,0" Spacing="15" Grid.Row="2">
 
                 <StackLayout Orientation="Vertical">
-                    <local:CustomPicker TitleColor="#9B9A9A" Title="Profession" TextColor="#000000" Grid.Row="1" SelectedItem="{Binding Profession}" Grid.ColumnSpan="2" FontSize="13" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+                    <local:CustomPicker TitleColor="#9B9A9A" Title="Profession" TextColor="#000000" Grid.Row="1" SelectedItem="{Binding AppInstance.Essentials.UserProfile.Profession}" props:ControlProperties.PickerSelectedItem="{Binding AppInstance.Essentials.UserProfile.Profession}" Grid.ColumnSpan="2" FontSize="13" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                         <Picker.Items>
                             <x:String>Oil and Gas</x:String>
                             <x:String>Health Services</x:String>
@@ -60,7 +61,7 @@
                 </StackLayout>
 
                 <StackLayout Orientation="Vertical">
-                    <local:CustomEditor Placeholder="I enjoy" PlaceholderColor="#9B9A9A" HeightRequest="200" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding FullName}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                    <local:CustomEditor Placeholder="I enjoy" PlaceholderColor="#9B9A9A" HeightRequest="200" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.Hobbies}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
                 </StackLayout>
 
                 <StackLayout Margin="0,60,0,0" VerticalOptions="EndAndExpand">

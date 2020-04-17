@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="Flurl.Http" Version="2.4.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="PInvoke.BCrypt" Version="0.6.6" />
+    <PackageReference Include="PInvoke.Kernel32" Version="0.6.6" />
+    <PackageReference Include="PInvoke.NCrypt" Version="0.6.6" />
+    <PackageReference Include="PInvoke.Windows.Core" Version="0.6.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Necessitudo.Contract\Necessitudo.Contract.csproj" />
+    <ProjectReference Include="..\Necessitudo.Engine\Necessitudo.Engine.csproj" />
+  </ItemGroup>
+
+</Project>

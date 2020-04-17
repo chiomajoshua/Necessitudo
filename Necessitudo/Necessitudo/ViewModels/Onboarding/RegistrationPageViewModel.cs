@@ -1,10 +1,16 @@
-﻿using Necessitudo.Models;
+﻿using Acr.UserDialogs;
+using Necessitudo.Models;
+using Necessitudo.Models.RequestModel;
+using Necessitudo.Services.Helpers;
+using Necessitudo.Services.ViewModels;
 using Necessitudo.Views.Explore;
 using Necessitudo.Views.General;
 using Necessitudo.Views.Onboarding;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -15,59 +21,18 @@ namespace Necessitudo.ViewModels.Onbaording
         public RegistrationPageViewModel()
         {
             ListAges = PickerService.GetAges().OrderBy(c => c.Value).ToList();
+            ConfirmationText = $" Hi {AppInstance.Essentials.UserProfile.FirstName}, Kudos for completing your registration. You can start meeting people now....";
         }
-
-        public string Gender
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
-
-        public string Title
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
-
-        public string LastName
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
-
-        public string FirstName
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
-
-        public string Email
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
-
-        public string Profession
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
-
-        public string Phone
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
-
-        public DateTime DateOfBirth
-        {
-            get => GetValue<DateTime>();
-            set => SetValue(value);
-        }
-
+        
         public DateTime MaxDob => DateTime.Now.AddYears(-18);
 
         public DateTime MinDob => DateTime.Now.AddYears(-50);
+
+        public string ConfirmationText
+        {
+            get => GetValue<string>();
+            set => SetValue(value);
+        }
 
 
         #region ProfessionPickerItem
@@ -165,27 +130,103 @@ namespace Necessitudo.ViewModels.Onbaording
 
         private async void ProcessRegistration()
         {
-            if (!string.IsNullOrEmpty(LastName))
-                if (!string.IsNullOrEmpty(FirstName))
-                    if (!string.IsNullOrEmpty(Gender))
-                        if (!string.IsNullOrEmpty(Email))                        
-                            if(IsValidEmail(Email)) await PushPageAsync(new AdditionalProfilePage());
-                            else StatusDialog.Show(StatusDialogType.Info, "Information", "Invalid email address format", "OK", null);
-                        else StatusDialog.Show(StatusDialogType.Info, "Information", "Email address missing", "OK", null);
-                    else StatusDialog.Show(StatusDialogType.Info, "Information", "No gender selected", "OK", null);
-                else StatusDialog.Show(StatusDialogType.Info, "Information", "Firstname missing", "OK", null);
-            else StatusDialog.Show(StatusDialogType.Info, "Information", "Lastname missing", "OK", null);
+            if (!await ValidateFields())
+            {
+                StatusDialog.Show(StatusDialogType.Info, "Necessitudo", "Please Fill All Fields", "OK", null);
+                return;
+            }
+            else
+            if (!IsValidEmail(AppInstance.Essentials.UserProfile.Email))
+            {
+                StatusDialog.Show(StatusDialogType.Info, "Necessitudo", "Invalid email address format", "OK", null);
+                return;
+            }
+            else if (AppInstance.Essentials.UserProfile.DateofBirth == default)
+            {
+                StatusDialog.Show(StatusDialogType.Info, "Necessitudo", "Please select date of birth.", "Ok", null);
+                return;
+            }
+            else
+            {
+                UserDialogs.Instance.ShowLoading("Validating Email...");
+                await Task.Delay(3000);
+                var vm = DIFactory.Resolve<SecurityViewModel>();
+                var selectModel = new SelectUserViewModel
+                {
+                    Email = AppInstance.Essentials.UserProfile.Email
+                };
+                var result = await vm.ValidateEmail(selectModel);
+                UserDialogs.Instance.HideLoading();
+                if(result.ResponseObject == true)
+                {
+                    StatusDialog.Show(StatusDialogType.Info, "Necessitudo", "Email address already exists", "OK", null);
+                    return;
+                }
+                else
+                {
+                    await AppInstance.Essentials.SaveUserProfileAsync();
+                    await PushPageAsync(new AdditionalProfilePage());
+                }                
+            }
+            
         }
         private async void CompleteRegistration()
         {
-            await PushPageAsync(new SetPasswordPage(new SetPasswordPageViewModel()));
+            if (!await ValidateLookingForPageFields())
+            {
+                StatusDialog.Show(StatusDialogType.Info, "Necessitudo", "Please Fill All Fields", "OK", null);
+                return;
+            }
+            else
+            {
+                await AppInstance.Essentials.SaveUserProfileAsync();
+                await PushPageAsync(new SetPasswordPage(new SetPasswordPageViewModel()));
+            }
         }
 
         private async void LookingForPage()
-        {          
-              await PushPageAsync(new LookingForPage());;
+        {
+            if (!await ValidateAdditionalProfilePageFields())
+            {
+                StatusDialog.Show(StatusDialogType.Info, "Necessitudo", "Please Fill All Fields", "OK", null);
+                return;
+            }
+            else
+            {
+                await AppInstance.Essentials.SaveUserProfileAsync();
+                await PushPageAsync(new LookingForPage());
+            }         
         }
 
-      
+        private async Task<bool> ValidateFields()
+        {
+            var userProfile = AppInstance.Essentials.UserProfile;
+            if(!(!string.IsNullOrEmpty(userProfile.LastName) && !string.IsNullOrEmpty(userProfile.FirstName) && !string.IsNullOrEmpty(userProfile.Email) && !string.IsNullOrEmpty(userProfile.Gender) && !string.IsNullOrEmpty(userProfile.PhoneNumber) && !string.IsNullOrEmpty(userProfile.PhoneNumber)))
+            {
+                return false;
+            }
+            userProfile.DateofBirth = userProfile.DateofBirthSelected.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture).Replace("/", "-");
+            return true;
+        }
+
+        private async Task<bool> ValidateAdditionalProfilePageFields()
+        {
+            var userProfile = AppInstance.Essentials.UserProfile;
+            if (!(!string.IsNullOrEmpty(userProfile.Profession) && !string.IsNullOrEmpty(userProfile.Hobbies)))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private async Task<bool> ValidateLookingForPageFields()
+        {
+            var userProfile = AppInstance.Essentials.UserProfile;
+            if (!(!string.IsNullOrEmpty(userProfile.AgeRange) && !string.IsNullOrEmpty(userProfile.DealMakers) && !string.IsNullOrEmpty(userProfile.DealBreakers)))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

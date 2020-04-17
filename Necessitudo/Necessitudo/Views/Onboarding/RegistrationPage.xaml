@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:Necessitudo.CustomRenderer"
              xmlns:vm="clr-namespace:Necessitudo.ViewModels.Onbaording"
+             xmlns:props="clr-namespace:Necessitudo.AttachedProperties"
              mc:Ignorable="d"
              NavigationPage.HasNavigationBar="False"
              x:Class="Necessitudo.Views.Onboarding.RegistrationPage">
@@ -46,15 +47,15 @@
 
                 <StackLayout VerticalOptions="CenterAndExpand" Spacing="20" Grid.Row="2">
                     <StackLayout Orientation="Vertical">
-                        <local:CustomEntry Text="{Binding LastName}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Text"  Placeholder="LastName" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
+                        <local:CustomEntry Text="{Binding AppInstance.Essentials.UserProfile.LastName}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Text"  Placeholder="LastName" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <local:CustomEntry Text="{Binding FirstName}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Text"  Placeholder="Firstname" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
+                        <local:CustomEntry Text="{Binding AppInstance.Essentials.UserProfile.FirstName}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Text"  Placeholder="Firstname" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal">
-                        <local:CustomPicker Title="Gender" FontSize="13" FontFamily="{StaticResource gothamProRegular}" SelectedItem="{Binding Gender}" TitleColor="#9B9A9A" TextColor="#000000" x:Name="borderlessPicker1"  Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <local:CustomPicker Title="Gender" FontSize="13" FontFamily="{StaticResource gothamProRegular}" SelectedItem="{Binding AppInstance.Essentials.UserProfile.Gender}" props:ControlProperties.PickerSelectedItem="{Binding AppInstance.Essentials.UserProfile.Gender}" TitleColor="#9B9A9A" TextColor="#000000" x:Name="borderlessPicker1"  Grid.Row="0" Grid.Column="0" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
                             <Picker.Items>
                                 <x:String>Female</x:String>
                                 <x:String>Male</x:String>
@@ -63,17 +64,18 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <local:CustomEntry Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Email}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Email"  Placeholder="Email" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
+                        <local:CustomEntry Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding AppInstance.Essentials.UserProfile.Email}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Email"  Placeholder="Email" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <local:CustomEntry Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Phone}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Telephone" Placeholder="Mobile" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
+                        <local:CustomEntry Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding AppInstance.Essentials.UserProfile.PhoneNumber}" VerticalOptions="CenterAndExpand"  IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" WidthRequest="200" HorizontalOptions="FillAndExpand" Keyboard="Telephone" Placeholder="Mobile" PlaceholderColor="#9B9A9A" TextColor="#000000" FontSize="13"/>
                     </StackLayout>
 
                     <StackLayout Spacing="-10" Orientation="Vertical">
                         <Label FontSize="13" Text="Date Of Birth"/>
-                        <DatePicker Visual="Material" TextColor="#000000" MinimumDate="{Binding MinDob}" Date="{Binding DateOfBirth}" FontSize="13" MaximumDate="{Binding MaxDob}" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" />
+                        <DatePicker Visual="Material" TextColor="#000000" MinimumDate="{Binding MinDob}" Date="{Binding AppInstance.Essentials.UserProfile.DateofBirthSelected}" FontSize="13" MaximumDate="{Binding MaxDob}" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" />
                     </StackLayout>
+                    
 
 
                     <StackLayout Margin="0,30,0,0" VerticalOptions="EndAndExpand">

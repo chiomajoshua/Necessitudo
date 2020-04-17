@@ -11,7 +11,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.442" />
     <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="CarouselView.FormsPlugin" Version="5.2.0" />
     <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -27,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Necessitudo.Models\Necessitudo.Models.csproj" />
+    <ProjectReference Include="..\..\Necessitudo.Services\Necessitudo.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>
