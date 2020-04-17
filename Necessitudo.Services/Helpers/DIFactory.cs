@@ -3,13 +3,10 @@ using Necessitudo.Contract;
 using Necessitudo.Engine;
 using Necessitudo.Services.Services;
 using Necessitudo.Services.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Necessitudo.Services.Helpers
 {
-    public class DIFactory
+	public class DIFactory
     {
 		public static IContainer Container { get; set; }
 		public static bool ReIssueTokenOnError = true;
@@ -21,14 +18,17 @@ namespace Necessitudo.Services.Helpers
 
 			#region DIEngines
 			builder.RegisterInstance(new SecurityEngine()).As<ISecurityEngine>();
+			builder.RegisterInstance(new UserEngine()).As<IUserEngine>();
 			#endregion
 
 			#region DIServices
 			builder.RegisterType<SecurityService>();
+			builder.RegisterType<UserService>();
 			#endregion
 
 			#region DIViewModels
 			builder.RegisterType<SecurityViewModel>();
+			builder.RegisterType<UserViewModel>();
 			#endregion
 
 			Container = builder.Build();
@@ -37,11 +37,11 @@ namespace Necessitudo.Services.Helpers
 
 		public static T Resolve<T>()
 		{
-			if (DIFactory.Container == null)
+			if (Container == null)
 			{
 				Initialize();
 			}
-			return DIFactory.Container.Resolve<T>();
+			return Container.Resolve<T>();
 		}
 	}
 }

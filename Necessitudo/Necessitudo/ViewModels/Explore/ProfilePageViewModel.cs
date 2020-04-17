@@ -22,58 +22,22 @@ namespace Necessitudo.ViewModels.Explore
             SetProfileInfo();
         }
 
-        public string About
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
-        public string Gender
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
+        public string About { get => $"{ AppInstance.Essentials.UserProfile.AboutMe}"; }
+        public string Gender { get => $"{ AppInstance.Essentials.UserProfile.Gender}"; }     
 
-        public string Title
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
+        public string LastName { get => $"{ AppInstance.Essentials.UserProfile.LastName}"; }
 
-        public string LastName
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
+        public string Profession { get => $"{ AppInstance.Essentials.UserProfile.Profession}"; }
 
-        public string Profession
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
+        public string IEnjoy { get => $"{ AppInstance.Essentials.UserProfile.Hobbies}"; }
 
-        public string IEnjoy
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
+        public string FirstName { get => $"{ AppInstance.Essentials.UserProfile.FirstName}"; }
 
-        public string FirstName
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
+        public string Email { get => $"{ AppInstance.Essentials.UserProfile.Email}"; }
 
-        public string Email
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
+        public string FullName { get => $"{ AppInstance.Essentials.UserProfile.FirstName} {AppInstance.Essentials.UserProfile.LastName}"; }
 
-        public string DateOfBirth
-        {
-            get => GetValue<string>();
-            set => SetValue(value);
-        }
+        public string DateOfBirth { get => $"{ AppInstance.Essentials.UserProfile.DateofBirth.ToShortDateString()} "; }
         public bool InstagramLink
         {
             get => GetValue<bool>();
@@ -102,8 +66,7 @@ namespace Necessitudo.ViewModels.Explore
             get;
             set;
         }
-
-        public string FullName => FirstName + " " + LastName;
+       
         public ICommand EditProfilePageCommand => new Command(EditProfilePage);
 
         public async void EditProfilePage()
@@ -112,16 +75,7 @@ namespace Necessitudo.ViewModels.Explore
         }
 
         public void SetProfileInfo()
-        {
-            LastName = "Chioma";
-            FirstName = "Joshua";
-            About = "I was born in a ghetto part of Lagos. Now I live on the hills. Blah, Blah, Blah, Blah, Blah";
-            DateOfBirth = string.Format("{0:MMMM dd, yyyy}", Convert.ToDateTime("25-04-1919"));
-            Profession = "Information Technology Services";
-            IEnjoy = "Writing Codes, Swimming, Solving Problems, Charity Work, Singing";
-            Email = "chiomajoshua@gmail.com";
-            Title = "Mr";
-            Gender = "Male";
+        {           
             SocialMediaConnection = 3;
             InstagramLink = false;
             FacebookLink = false;

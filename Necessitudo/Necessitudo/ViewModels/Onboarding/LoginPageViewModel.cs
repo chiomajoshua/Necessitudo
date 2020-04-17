@@ -99,11 +99,26 @@ namespace Necessitudo.ViewModels.Onbaording
 
                     if (result.ResponseCode == Convert.ToInt32(ResponseCode.Successful))
                     {
-                        UserDialogs.Instance.Toast("Login Successful", TimeSpan.FromSeconds(3));
-                        await Task.Delay(100);
-                        AppInstance.Status = CustomerStatus.Completed;
-                        AppInstance.Essentials.AuthToken = result.ResponseObject;                        
-                        await PushPageAsync(new CentralPage());
+                        if(Email != AppInstance.Essentials?.UserProfile?.Email)
+                        {
+                            //var vm = FBNQuest.Services.Secured.Helpers.DIFactory.Resolve<FBNQuest.Services.Secured.ViewModels.CustomerVM>();
+
+                            //var result = await AppInstance.Essentials.GetApiAsync(vm, (arg) => arg.GetCustomerById(AppInstance.Essentials.Customer), (arg) => arg.RespCode, (arg) => vm.GetNetworkErrorMessage(arg));
+
+
+                            //if (!result.IsSuccessfull) return false;
+                            //AppInstance.Essentials.Customer = Helpers.Utils.TransformCustomer(result.Result.RespObj);
+                            //await AppInstance.Essentials.SaveCustomerDataAsync();
+                            AppInstance.Status = CustomerStatus.Completed;
+                            AppInstance.Essentials.AuthToken = result.ResponseObject;
+                            await PushPageAsync(new CentralPage());
+                        }
+                        else
+                        {
+                            AppInstance.Status = CustomerStatus.Completed;
+                            AppInstance.Essentials.AuthToken = result.ResponseObject;
+                            await PushPageAsync(new CentralPage());
+                        }                      
                     }
                     else
                         if(result.ResponseCode == Convert.ToInt32(ResponseCode.User_Not_Found))
@@ -131,3 +146,5 @@ namespace Necessitudo.ViewModels.Onbaording
         }       
     }
 }
+
+

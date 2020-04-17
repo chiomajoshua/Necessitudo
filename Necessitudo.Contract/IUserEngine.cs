@@ -6,13 +6,13 @@ namespace Necessitudo.Contract
 {
     public interface IUserEngine
     {
-        Task<ApiResponse<bool>> ResetPassword(ResetPasswordViewModel resetPasswordViewModel);
-        Task<ApiResponse<bool>> UpdateProfile(UpdateUserViewModel updateUserViewModel);
-        Task<ApiResponse<APIUserViewModel>> GetUserProfile(SelectUserViewModel selectUserViewModel);
-        Task<ApiResponse<bool>> AddSocialMediaConnection(AddSocialMediaViewModel addSocialMediaViewModel);
-        Task<ApiResponseList<APISocialMediaViewModel>> GetSocialMediaConnections(SelectUserViewModel selectUserViewModel);
-        Task<ApiResponse<bool>> AddProfileLike(AddProfileLikeViewModel addProfileLikeViewModel);
-        Task<ApiResponse<bool>> DeleteProfileLike(ProfileLikeViewModel profileLikeViewModel);
-        Task<ApiResponseList<APIProfileLikeViewModel>> GetProfileLikes(SelectUserViewModel selectUserViewModel);
+        Task<ApiResponse<bool>> ResetPassword(ResetPasswordViewModel resetPasswordViewModel, string token);
+        Task<ApiResponse<bool>> UpdateProfile(UpdateUserViewModel updateUserViewModel, string token);
+        Task<ApiResponse<APIUserViewModel>> GetUserProfile(SelectUserViewModel selectUserViewModel, string token);
+        Task<ApiResponse<bool>> AddSocialMediaConnection(AddSocialMediaViewModel addSocialMediaViewModel, string token);
+        Task<ApiResponseList<APISocialMediaViewModel>> GetSocialMediaConnections(SelectUserViewModel selectUserViewModel, string token);
+        Task<ApiResponse<bool>> AddProfileLike(AddProfileLikeViewModel addProfileLikeViewModel, string token);
+        Task<ApiResponse<bool>> DeleteProfileLike(ProfileLikeViewModel profileLikeViewModel, string token);
+        Task<ApiResponseList<APIProfileLikeViewModel>> GetProfileLikes(SelectUserViewModel selectUserViewModel, string token);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Necessitudo.Models;
 using Necessitudo.Views.General;
 using Necessitudo.Views.Onboarding;
 using System;
@@ -38,7 +39,8 @@ namespace Necessitudo.ViewModels.Onbaording
                 var result = await AppInstance.Essentials.RegisterNewUser();
                 UserDialogs.Instance.HideLoading();
                 if (result.IsSuccessfull)
-                {                                      
+                {
+                    AppInstance.Status = CustomerStatus.Completed;
                     await PushPageAsync(new OnboardingCompletePage());
                 }
                 else
