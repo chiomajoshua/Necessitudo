@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Necessitudo.APIModels
 {
     public class ApiResponse
     {
         public int ResponseCode { get; set; }
-        public string RespMessage { get; set; }
+        public string ResponseMessage { get; set; }
         public int RecordCount { get; set; }
     }
 
@@ -19,7 +17,7 @@ namespace Necessitudo.APIModels
     public class ApiResponseList<T> where T : class
     {
         public int ResponseCode { get; set; }
-        public string RespMessage { get; set; }
+        public string ResponseMessage { get; set; }
         public List<T> ResponseObject { get; set; }
         public int RecordCount { get; set; }
     }
