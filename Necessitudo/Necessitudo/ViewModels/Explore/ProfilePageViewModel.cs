@@ -1,10 +1,15 @@
-﻿using Necessitudo.Models;
+﻿using Acr.UserDialogs;
+using Necessitudo.Models;
 using Necessitudo.Views.Explore;
 using Necessitudo.Views.General;
 using Necessitudo.Views.Onboarding;
+using Newtonsoft.Json.Linq;
+using Plugin.FacebookClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -14,6 +19,8 @@ namespace Necessitudo.ViewModels.Explore
     {
         public ProfilePageViewModel()
         {
+            OnLoadDataCommand = new Command(async () => await LoadData());
+            UserDialogs.Instance.HideLoading();
             Items = new List<SliderItem> {
                 new SliderItem{ ImagePath = "testImage.png" },
                 new SliderItem{ ImagePath = "walkThroughImageTwo.png" },
@@ -68,6 +75,7 @@ namespace Necessitudo.ViewModels.Explore
         }
        
         public ICommand EditProfilePageCommand => new Command(EditProfilePage);
+        public ICommand SocialMediaConnectPageCommand => new Command(async () => await PushPageAsync(new SocialMediaConnectPage()));
 
         public async void EditProfilePage()
         {
@@ -88,10 +96,85 @@ namespace Necessitudo.ViewModels.Explore
         {
             StatusDialog.Show(StatusDialogType.Success, "Dating App", "You are about to logoff. Please confirm.", "Yes", async () =>
             {
-                AppInstance.MainPage.Navigation.InsertPageBefore(new LoginPageView(), AppInstance.MainPage.Navigation.NavigationStack.First());
-                await AppInstance.MainPage.Navigation.PopToRootAsync();
+                UserDialogs.Instance.ShowLoading("Logging user out.. Please Wait...");
+                await Task.Delay(2000);
+                var result = await AppInstance.Essentials.Logout();
+                UserDialogs.Instance.HideLoading();
+                if (result.IsSuccessfull)
+                {
+                    AppInstance.MainPage.Navigation.InsertPageBefore(new LoginPageView(), AppInstance.MainPage.Navigation.NavigationStack.First());
+                    await AppInstance.MainPage.Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    StatusDialog.Show(StatusDialogType.Info, "Necessitudo", "Apologies. We cannot clear your session at the moment..Please try again later.", "Ok", null);
+                }
+               
             },
              "No", null);
         }
+
+        #region FacebookIntegration
+        public Command OnLoadDataCommand { get; set; }
+
+        public ICommand OnLoginWithFacebookCommand => new Command(async () => await LoginFacebookAsync());
+
+        IFacebookClient _facebookService = CrossFacebookClient.Current;
+        string[] permisions = new string[] { "email", "public_profile", "user_posts" };
+
+        public bool FacebookButton
+        {
+            get => GetValue<bool>();
+            set => SetValue(value);
+        }
+
+        private async Task LoginFacebookAsync()
+        {
+            try
+            {
+                FacebookResponse<bool> response = await CrossFacebookClient.Current.LoginAsync(permisions);
+                switch (response.Status)
+                {
+                    case FacebookActionStatus.Completed:
+                        OnLoadDataCommand.Execute(null);
+                        FacebookButton = false;
+                        break;
+                    case FacebookActionStatus.Canceled:
+
+                        break;
+                    case FacebookActionStatus.Unauthorized:
+                        await App.Current.MainPage.DisplayAlert("Unauthorized", response.Message, "Ok");
+                        break;
+                    case FacebookActionStatus.Error:
+                        await App.Current.MainPage.DisplayAlert("Error", response.Message, "Ok");
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+        }
+        public async Task LoadData()
+        {
+
+            var jsonData = await CrossFacebookClient.Current.RequestUserDataAsync
+            (
+                  new string[] { "id", "name", "email", "picture", "cover", "friends" }, new string[] { }
+            );
+
+            var data = JObject.Parse(jsonData.Data);
+            var profile = new
+            {
+                FullName = data["name"].ToString(),
+                Picture = new UriImageSource { Uri = new Uri($"{data["picture"]["data"]["url"]}") },
+                Email = data["email"].ToString()
+            };
+
+            var facebookProfile = profile;
+
+            // await LoadPosts();
+        }
+        #endregion
     }
 }

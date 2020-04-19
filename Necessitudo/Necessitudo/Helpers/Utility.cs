@@ -1,4 +1,5 @@
-﻿using Necessitudo.Models;
+﻿using Necessitudo.APIModels;
+using Necessitudo.Models;
 
 namespace Necessitudo.Helpers
 {
@@ -43,6 +44,31 @@ namespace Necessitudo.Helpers
                     break;
             }
             return isValid;
+        }
+
+        public static UserProfile TransformCustomer(APIUserViewModel apiUserViewModel)
+        {
+            return new UserProfile()
+            {
+                AboutMe = apiUserViewModel.AboutMe,
+                AccountStatus = apiUserViewModel.AccountStatus,
+                AgeRange = apiUserViewModel.AgeRange,
+                DateJoined = apiUserViewModel.DateJoined,
+                DateofBirth = apiUserViewModel.DateofBirth,
+                DealBreakers = apiUserViewModel.DealBreakers,
+                DealMakers = apiUserViewModel.DealMakers,
+                Email = apiUserViewModel.Email,
+                FirstName = apiUserViewModel.FirstName,
+                Gender = apiUserViewModel.Gender,
+                Hobbies = apiUserViewModel.Hobbies,
+                Id = apiUserViewModel.Id,
+                ImageURL = apiUserViewModel.ImageURL,
+                LastName = apiUserViewModel.LastName,
+                PhoneNumber = apiUserViewModel.PhoneNumber,
+                Profession = apiUserViewModel.Profession,
+                StarCount = apiUserViewModel.StarCount,
+                UserName = apiUserViewModel.UserName
+            };
         }
     }
 }

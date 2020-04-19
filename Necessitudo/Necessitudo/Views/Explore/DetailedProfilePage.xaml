@@ -115,10 +115,14 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0" Text="Social Media Connections" TextColor="#7D7D7D" FontSize="11" FontFamily="{StaticResource gothamProLight}" HorizontalOptions="StartAndExpand"/>
-                                <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="4">
+                                    <StackLayout Grid.Row="1" Orientation="Horizontal" Spacing="4">
                                     <Image x:Name="linkedin" HeightRequest="30" WidthRequest="30"/>
                                     <Image x:Name="instagram" HeightRequest="30" WidthRequest="30"/>
-                                    <Image x:Name="facebook" HeightRequest="30" WidthRequest="30" />
+                                    <Image x:Name="facebook" IsEnabled="{Binding FacebookButton}" HeightRequest="30" WidthRequest="30">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding OnLoginWithFacebookCommand}" />
+                                        </Image.GestureRecognizers>                                        
+                                    </Image>                                    
                                 </StackLayout>
                             </Grid>
                         </StackLayout>

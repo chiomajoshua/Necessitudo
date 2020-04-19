@@ -125,6 +125,34 @@ namespace Necessitudo.Helpers
             }
         }
 
+        public async Task<ApiCallResult<bool>> Logout()
+        {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet) return new ApiCallResult<bool> { IsSuccessfull = false, Message = "oooppppsss.. You are disconnected from the internet..." };
+
+            var vm = DIFactory.Resolve<SecurityViewModel>();
+
+            try
+            {
+                var result = await vm.Logout(AuthToken);
+                if (result.ResponseObject == true)
+                {
+                    AuthToken = string.Empty;
+                    return new ApiCallResult<bool> { IsSuccessfull = true, Result = result.ResponseObject };
+                }
+                else
+                {
+                    return new ApiCallResult<bool> { IsSuccessfull = false, Message = result.ResponseMessage };
+                }
+            }
+            catch (Exception ex)
+            {
+                var emsg = vm.GetNetworkErrorMessage(new AggregateException(ex));
+
+
+                return new ApiCallResult<bool> { IsSuccessfull = false, Message = emsg };
+            }
+        }
+
         private RegisterViewModel MapRegisterModel(UserProfile userProfile)
         {
             return new RegisterViewModel()

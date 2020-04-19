@@ -18,11 +18,9 @@
     <ContentPage.Content>
         <ScrollView>
             <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="30">
-
                 <StackLayout VerticalOptions="CenterAndExpand" Spacing="20">
-
                     <StackLayout Orientation="Vertical">
-                        <local:CustomPicker TitleColor="#9B9A9A" Title="Industry" TextColor="#000000" Grid.Row="1" SelectedItem="{Binding Profession}" Grid.ColumnSpan="2" FontSize="13" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
+                        <local:CustomPicker TitleColor="#9B9A9A" Title="Profession" TextColor="#000000" Grid.Row="1" SelectedItem="{Binding AppInstance.Essentials.UserProfile.Profession}" props:ControlProperties.PickerSelectedItem="{Binding AppInstance.Essentials.UserProfile.Profession}" Grid.ColumnSpan="2" FontSize="13" FontFamily="{StaticResource gothamProRegular}" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand">
                             <Picker.Items>
                                 <x:String>Oil and Gas</x:String>
                                 <x:String>Health Services</x:String>
@@ -34,11 +32,11 @@
                     </StackLayout>
 
                     <StackLayout Orientation="Vertical">
-                        <local:CustomEditor Placeholder="About me" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AboutMe}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                        <local:CustomEditor Placeholder="About me" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.AboutMe}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
                     </StackLayout>
                     
                     <StackLayout Orientation="Vertical">
-                        <local:CustomEditor Placeholder="I enjoy" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding Hobbies}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                        <local:CustomEditor Placeholder="I enjoy" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.Hobbies}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
                     </StackLayout>               
                    
 
@@ -46,15 +44,22 @@
                         <Label Text="My Preference" BackgroundColor="WhiteSmoke" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="#9B9A9A" HorizontalOptions="StartAndExpand"  />
 
                         <StackLayout Orientation="Vertical">
-                            <local:CustomPicker Grid.Column="1" Margin="0,0,0,15" TitleColor="#9B9A9A" Grid.ColumnSpan="2" ItemDisplayBinding="{Binding Value}" SelectedItem="{Binding SelectedAge}" props:ControlProperties.PickerSelectedItem="{Binding SelectedAge}" ItemsSource="{Binding ListAges}" Title="Age Range" FontSize="14" BackgroundColor="Transparent" />
+                            <local:CustomPicker Grid.Column="1" Margin="0,0,0,15" TitleColor="#9B9A9A" Grid.ColumnSpan="2" SelectedItem="{Binding AppInstance.Essentials.UserProfile.AgeRange}" props:ControlProperties.PickerSelectedItem="{Binding AppInstance.Essentials.UserProfile.AgeRange}" Title="Age Range" FontSize="14" BackgroundColor="Transparent">
+                            <Picker.Items>
+                                <x:String>20-30</x:String>
+                                <x:String>31-40</x:String>
+                                <x:String>41-50</x:String>
+                                <x:String>51-60</x:String>
+                            </Picker.Items>
+                            </local:CustomPicker>
                         </StackLayout>
 
                         <StackLayout Orientation="Vertical">
-                            <local:CustomEditor Placeholder="Deal Makers" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding DealMakers}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                            <local:CustomEditor Placeholder="Deal Makers" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.DealMakers}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
                         </StackLayout>
 
                         <StackLayout Orientation="Vertical">
-                            <local:CustomEditor Placeholder="Deal Breakers" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding DealBreakers}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
+                            <local:CustomEditor Placeholder="Deal Breakers" PlaceholderColor="#9B9A9A" HeightRequest="90" Grid.Column="1" Grid.ColumnSpan="2" Margin="5,0" Text="{Binding AppInstance.Essentials.UserProfile.DealBreakers}" VerticalOptions="FillAndExpand" IsTextPredictionEnabled="False" FontFamily="{StaticResource gothamProRegular}" HorizontalOptions="FillAndExpand" Keyboard="Text" TextColor="#000000" FontSize="14"/>
                         </StackLayout>
                     </StackLayout>
 
@@ -65,7 +70,7 @@
                     <StackLayout Margin="0,30,0,0" VerticalOptions="EndAndExpand">
                         <Frame Visual="Material" WidthRequest="450" HeightRequest="20" Opacity="75" Margin="10,10,10,10" HorizontalOptions="FillAndExpand" BackgroundColor="#F94646" Padding="20">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding ProcessRegistrationCommand}" />
+                                <TapGestureRecognizer Command="{Binding UpdateProfileCommand}" />
                             </Frame.GestureRecognizers>
                             <Label Text="Save" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
                         </Frame>

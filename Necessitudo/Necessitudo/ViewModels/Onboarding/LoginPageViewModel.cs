@@ -7,6 +7,7 @@ using Necessitudo.Views.Explore;
 using Necessitudo.Views.General;
 using Necessitudo.Views.Onboarding;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -87,37 +88,49 @@ namespace Necessitudo.ViewModels.Onbaording
                 try
                 {
                     UserDialogs.Instance.ShowLoading("Signing you in...");
-                    await Task.Delay(3000);
+                    await Task.Delay(4000);
                     var vm = DIFactory.Resolve<SecurityViewModel>();
                     var loginModel = new LoginViewModel
                     {
                         Email = Email,
                         Password = Pin
                     };
-                    var result = await vm.Login(loginModel);
-                    UserDialogs.Instance.HideLoading();
+                    var result = await vm.Login(loginModel);                    
 
                     if (result.ResponseCode == Convert.ToInt32(ResponseCode.Successful))
                     {
                         if(Email != AppInstance.Essentials?.UserProfile?.Email)
                         {
-                            //var vm = FBNQuest.Services.Secured.Helpers.DIFactory.Resolve<FBNQuest.Services.Secured.ViewModels.CustomerVM>();
-
-                            //var result = await AppInstance.Essentials.GetApiAsync(vm, (arg) => arg.GetCustomerById(AppInstance.Essentials.Customer), (arg) => arg.RespCode, (arg) => vm.GetNetworkErrorMessage(arg));
-
-
-                            //if (!result.IsSuccessfull) return false;
-                            //AppInstance.Essentials.Customer = Helpers.Utils.TransformCustomer(result.Result.RespObj);
-                            //await AppInstance.Essentials.SaveCustomerDataAsync();
-                            AppInstance.Status = CustomerStatus.Completed;
                             AppInstance.Essentials.AuthToken = result.ResponseObject;
-                            await PushPageAsync(new CentralPage());
+                            UserDialogs.Instance.ShowLoading("Retrieving User Profile... Please Wait...");
+                            await Task.Delay(6000);
+                            var userVM = DIFactory.Resolve<UserViewModel>();
+                            var selectUserView = new SelectUserViewModel
+                            {
+                                Email = Email
+                            };
+                            var userProfileResult = await userVM.GetUserProfile(selectUserView, result.ResponseObject);
+                           
+                            if (userProfileResult.ResponseCode == Convert.ToInt32(ResponseCode.Successful))
+                            {                                
+                                AppInstance.Essentials.UserProfile = Helpers.Utility.TransformCustomer(userProfileResult.ResponseObject);
+                                await AppInstance.Essentials.SaveUserProfileAsync();
+                                AppInstance.Status = CustomerStatus.Completed;
+                                
+                                AppInstance.MainPage.Navigation.InsertPageBefore(new CentralPage(), AppInstance.MainPage.Navigation.NavigationStack.First());
+                                await AppInstance.MainPage.Navigation.PopToRootAsync();
+                                //UserDialogs.Instance.HideLoading();
+                                return;
+                            }
+                            StatusDialog.Show(StatusDialogType.Info, "Necessitudo", "We Could Not Retireve Your Profile at This Time... Please Try Again...", "Ok", null);
+                            return;                           
                         }
                         else
                         {
                             AppInstance.Status = CustomerStatus.Completed;
-                            AppInstance.Essentials.AuthToken = result.ResponseObject;
-                            await PushPageAsync(new CentralPage());
+                            //UserDialogs.Instance.HideLoading();
+                            AppInstance.Essentials.AuthToken = result.ResponseObject; AppInstance.MainPage.Navigation.InsertPageBefore(new CentralPage(), AppInstance.MainPage.Navigation.NavigationStack.First());
+                            await AppInstance.MainPage.Navigation.PopToRootAsync();
                         }                      
                     }
                     else
@@ -143,8 +156,6 @@ namespace Necessitudo.ViewModels.Onbaording
 
                 }                
             }
-        }       
+        }
     }
 }
-
-

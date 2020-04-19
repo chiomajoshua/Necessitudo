@@ -1,5 +1,4 @@
-﻿using Necessitudo.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace Necessitudo.Views.Explore
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class EditProfilePage : ContentPage
+    public partial class SocialMediaConnectPage : ContentPage
     {
-        public EditProfilePage()
+        public SocialMediaConnectPage()
         {
             InitializeComponent();
-            DependencyService.Get<IStatusBar>().HideStatusBar();
         }
     }
 }

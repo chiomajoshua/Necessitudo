@@ -62,9 +62,21 @@ namespace Necessitudo.Engine
             throw new NotImplementedException();
         }
 
-        public Task<ApiResponse<bool>> UpdateProfile(UpdateUserViewModel updateUserViewModel, string token)
+        public async Task<ApiResponse<bool>> UpdateProfile(UpdateUserViewModel updateUserViewModel, string token)
         {
-            throw new NotImplementedException();
+            try
+            {
+                #region headers
+                _header.Clear();
+                _header.Add("Authorization", "Bearer" + " " + token);
+                #endregion
+                return JsonConvert.DeserializeObject<ApiResponse<bool>>(await httpClientUtil.PostWithBody(url: Endpoints.UPDATE_PROFILE, headers: _header, updateUserViewModel));
+            }
+            catch (FlurlHttpException exception)
+            {
+                string message = HandleHttpError(exception);
+                throw new NetworkErrorException(message);
+            }
         }
     }
 }

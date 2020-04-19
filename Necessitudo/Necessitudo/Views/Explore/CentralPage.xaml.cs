@@ -15,7 +15,7 @@ namespace Necessitudo.Views.Explore
             InitializeComponent();
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
             On<Android>().EnableSwipePaging();
-            DependencyService.Get<IStatusBar>().ShowStatusBar();
+            DependencyService.Get<IStatusBar>().HideStatusBar();
         }
     }
 }

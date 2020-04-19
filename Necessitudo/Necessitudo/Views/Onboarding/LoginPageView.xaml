@@ -59,7 +59,7 @@
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding VerifyPhonePageCommand}" />
                         </Frame.GestureRecognizers>
-                        <Label Text="Next" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
+                        <Label Text="Login" FontSize="Small" FontFamily="{StaticResource gothamProRegular}" TextColor="White" HorizontalOptions="CenterAndExpand"  />
                     </Frame>
                 </StackLayout>
 
